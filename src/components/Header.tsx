@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,11 +29,24 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (isMenuOpen && !target.closest('.mobile-menu-container')) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isMenuOpen]);
+
   return (
     <>
       <header 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled 
+          isScrolled || isMenuOpen
             ? 'bg-black/80 backdrop-blur-md border-b border-white/10' 
             : 'bg-transparent'
         }`}
@@ -56,7 +70,7 @@ const Header = () => {
               </div>
             </Link>
 
-            {/* Navigation */}
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-2">
               {['About', 'Skills & Experience', 'Projects', 'Publications', 'Contact'].map((item) => {
                 const isActive = activeSection === item.toLowerCase().replace(/ & /g, '-and-');
@@ -147,21 +161,69 @@ const Header = () => {
             </nav>
 
             {/* Mobile Menu Button */}
-            <button className="md:hidden relative group">
-              <div className="relative flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all ring-0 ring-gray-300 hover:ring-8 group-focus:ring-4 ring-opacity-30 duration-200 shadow-md">
-                <div className="flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden">
-                  <div className="bg-white h-[2px] w-7 transform transition-all duration-300 origin-left group-focus:translate-x-10"></div>
-                  <div className="bg-white h-[2px] w-7 rounded transform transition-all duration-300 group-focus:translate-x-10 delay-75"></div>
-                  <div className="bg-white h-[2px] w-7 transform transition-all duration-300 origin-left group-focus:translate-x-10 delay-150"></div>
-
-                  <div className="absolute items-center justify-between transform transition-all duration-500 top-2.5 -translate-x-10 group-focus:translate-x-0 flex w-0 group-focus:w-12">
-                    <div className="absolute bg-white h-[2px] w-5 transform transition-all duration-500 rotate-0 delay-300 group-focus:rotate-45"></div>
-                    <div className="absolute bg-white h-[2px] w-5 transform transition-all duration-500 -rotate-0 delay-300 group-focus:-rotate-45"></div>
-                  </div>
-                </div>
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsMenuOpen(!isMenuOpen);
+              }}
+              className="mobile-menu-container md:hidden relative z-50 p-2 focus:outline-none"
+              aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
+            >
+              <div className="w-6 h-5 flex flex-col justify-between items-center">
+                <span 
+                  className={`w-full h-0.5 bg-white transform transition-all duration-300 ease-in-out ${
+                    isMenuOpen ? 'rotate-45 translate-y-2' : ''
+                  }`}
+                />
+                <span 
+                  className={`w-full h-0.5 bg-white transform transition-all duration-300 ease-in-out ${
+                    isMenuOpen ? 'opacity-0' : 'opacity-100'
+                  }`}
+                />
+                <span 
+                  className={`w-full h-0.5 bg-white transform transition-all duration-300 ease-in-out ${
+                    isMenuOpen ? '-rotate-45 -translate-y-2' : ''
+                  }`}
+                />
               </div>
             </button>
           </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <div 
+          className={`md:hidden fixed inset-0 z-40 transition-all duration-300 ${
+            isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
+        >
+          <div 
+            className={`absolute inset-0 bg-black/90 backdrop-blur-sm transition-all duration-300 ${
+              isMenuOpen ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+          <nav 
+            className={`absolute top-16 left-0 right-0 bg-black/90 border-t border-white/10 transform transition-all duration-300 ${
+              isMenuOpen ? 'translate-y-0' : '-translate-y-full'
+            }`}
+          >
+            <div className="px-4 py-2 space-y-1">
+              {['About', 'Skills & Experience', 'Projects', 'Publications', 'Contact'].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase().replace(/ & /g, '-and-')}`}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`block px-4 py-3 rounded-lg text-sm transition-all duration-300 ${
+                    activeSection === item.toLowerCase().replace(/ & /g, '-and-')
+                      ? 'bg-blue-500/10 text-blue-400'
+                      : 'text-gray-300 hover:bg-white/5'
+                  }`}
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
+          </nav>
         </div>
       </header>
       {/* Spacer to prevent content from going under fixed header */}

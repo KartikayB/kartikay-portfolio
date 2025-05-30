@@ -49,7 +49,7 @@ const Footer = () => {
               <span className="text-blue-400">/&gt;</span>
             </h3>
             <ul className="space-y-2">
-              {['About', 'Skills & Experience', 'Projects', 'Contact'].map((item) => (
+              {['About', 'Skills & Experience', 'Projects', 'Publications', 'Contact'].map((item) => (
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase().replace(/ & /g, '-and-')}`}
