@@ -58,7 +58,7 @@ const Contact = () => {
         </h2>
 
         <p className="text-gray-400 text-center mb-12 font-geist text-sm">
-          Let's collaborate and build something amazing together
+          Let&apos;s collaborate and build something amazing together
         </p>
 
         <div className="relative">

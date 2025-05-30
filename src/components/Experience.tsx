@@ -1,10 +1,5 @@
 import React from 'react';
 
-interface TechTag {
-  name: string;
-  color: string;
-}
-
 const experiences = [
   {
     title: "Data Scientist / Software Engineer - II",
