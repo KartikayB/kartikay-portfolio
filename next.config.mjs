@@ -1,19 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',  // Enable static exports
+  output: 'export',
+  basePath: '/kartikay-portfolio',
+  assetPrefix: '/kartikay-portfolio/',
   images: {
-    unoptimized: true, // Required for static export
-    loader: 'custom',
-    loaderFile: './src/image-loader.ts'
+    unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/kartikay-portfolio' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/kartikay-portfolio/' : '',
-  // Add metadata configuration
-  env: {
-    siteUrl: process.env.NODE_ENV === 'production' 
-      ? 'https://kartikayb.github.io/kartikay-portfolio'
-      : 'http://localhost:3000'
-  }
+  reactStrictMode: true,
+  swcMinify: true,
 };
 
 export default nextConfig; 

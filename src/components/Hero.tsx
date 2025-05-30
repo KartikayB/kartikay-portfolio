@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 
 const Hero = () => {
@@ -57,8 +56,10 @@ const Hero = () => {
 
           {/* Call to Action Buttons with data engineering theme */}
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <Link 
+            <a 
               href="/Kartikay_Bansal_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative px-8 py-3 bg-[#1a1a1a] text-white rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 overflow-hidden border border-blue-500/20"
             >
               {/* Database-inspired decoration */}
@@ -80,7 +81,7 @@ const Hero = () => {
                 <span className="font-geist-mono text-sm tracking-wide">Download CV</span>
                 <div className="absolute right-0 w-8 h-full bg-gradient-to-r from-transparent to-blue-500/10 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
               </div>
-            </Link>
+            </a>
 
             <a 
               href="#contact" 
