@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
+import { getAssetPath } from '@/utils/paths';
 
 const Hero = () => {
   return (
@@ -17,7 +18,7 @@ const Hero = () => {
           <div className="mb-8 relative">
             <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl">
               <Image
-                src="/profile.jpg"
+                src={getAssetPath('/profile.jpg')}
                 alt="Kartikay Bansal"
                 width={160}
                 height={160}
@@ -57,7 +58,7 @@ const Hero = () => {
           {/* Call to Action Buttons with data engineering theme */}
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <a 
-              href="/Kartikay_Bansal_CV.pdf"
+              href={getAssetPath('/Kartikay_Bansal_CV.pdf')}
               target="_blank"
               rel="noopener noreferrer"
               className="group relative px-8 py-3 bg-[#1a1a1a] text-white rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 overflow-hidden border border-blue-500/20"

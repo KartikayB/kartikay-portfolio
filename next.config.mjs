@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/kartikay-portfolio',
-  assetPrefix: '/kartikay-portfolio/',
+  basePath: process.env.NODE_ENV === 'production' ? '/kartikay-portfolio' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/kartikay-portfolio/' : '',
   images: {
     unoptimized: true,
   },
