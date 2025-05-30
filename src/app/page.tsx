@@ -5,6 +5,7 @@ import About from '@/components/About';
 import Experience from '@/components/Experience';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
+import Publications from '@/components/Publications';
 
 export default function Home() {
   return (
@@ -70,6 +71,46 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <Projects />
+            </div>
+          </div>
+        </section>
+
+        {/* Publications Section */}
+        <section id="publications" className="py-32 relative overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none">
+            {/* Neural network grid effect */}
+            <div className="absolute inset-0 grid grid-cols-8 gap-4 opacity-10">
+              {[...Array(64)].map((_, i) => {
+                const row = Math.floor(i / 8);
+                const col = i % 8;
+                return (
+                  <div
+                    key={i}
+                    className="aspect-square rounded-full bg-blue-500/20 animate-pulse"
+                    style={{
+                      animationDelay: `${(row * 0.1 + col * 0.1)}s`,
+                      animationDuration: '3s'
+                    }}
+                  />
+                );
+              })}
+            </div>
+            {/* Connecting lines */}
+            {[...Array(4)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-full h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent animate-data-flow"
+                style={{
+                  top: `${(i + 1) * 20}%`,
+                  animationDelay: `${i * 0.8}s`,
+                  animationDuration: '4s'
+                }}
+              />
+            ))}
+          </div>
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <Publications />
             </div>
           </div>
         </section>

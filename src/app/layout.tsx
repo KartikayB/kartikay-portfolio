@@ -60,25 +60,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
-      <body className="min-h-screen bg-[#0a0a0a] text-white antialiased">
-        <BackgroundEffects />
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`} suppressHydrationWarning>
+      <body className="min-h-screen bg-[#0a0a0a] text-white antialiased" suppressHydrationWarning>
+        <div className="fixed inset-0 z-0">
+          <BackgroundEffects />
+        </div>
         
         {/* Content Layer */}
-        <div className="relative flex flex-col min-h-screen">
+        <div className="relative z-10 flex flex-col min-h-screen">
           <Header />
           <main className="flex-grow relative">
             {/* Decorative elements for main content */}
-            <div className="absolute inset-0 pointer-events-none">
-              {/* Data flow indicators */}
-              <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
+            <div className="absolute inset-0 pointer-events-none opacity-20">
+              <div className="absolute top-0 left-0 w-32 h-32">
                 <svg viewBox="0 0 100 100" className="w-full h-full">
                   <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="0.5" />
                   <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="0.5" />
                   <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" strokeWidth="0.5" />
                 </svg>
               </div>
-              <div className="absolute top-0 right-0 w-32 h-32 opacity-20 transform rotate-90">
+              <div className="absolute top-0 right-0 w-32 h-32 transform rotate-90">
                 <svg viewBox="0 0 100 100" className="w-full h-full">
                   <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="0.5" />
                   <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="0.5" />
