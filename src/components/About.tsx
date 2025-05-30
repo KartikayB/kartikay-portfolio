@@ -33,9 +33,9 @@ const About = () => {
                 <span className="text-green-400">whoami</span>
                 <div className="mt-2 leading-relaxed">
                   I&apos;m a <span className="text-blue-400">Data Engineer</span> and <span className="text-cyan-400">Backend Developer</span> with 3+ years of experience building scalable data pipelines, APIs, and cloud-native applications. 
-                  <div className="inline-flex items-center">
-                    <span className="font-geist-mono text-blue-300">Core Stack: </span>
-                    <div className="ml-2 flex gap-2">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 mt-2">
+                    <span className="font-geist-mono text-blue-300 whitespace-nowrap">Core Stack:</span>
+                    <div className="flex flex-wrap gap-2">
                       {['Python', 'FastAPI', 'SQL', 'AWS', 'Kafka'].map((tech) => (
                         <span key={tech} className="px-2 py-0.5 rounded-md bg-blue-500/10 text-sm font-geist-mono text-blue-300">
                           {tech}

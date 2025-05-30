@@ -25,11 +25,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Kartikay Bansal | Data Engineer',
     description: 'Data Engineer specializing in building scalable data pipelines and analytics solutions.',
-    url: 'https://kartikay.dev',
+    url: 'https://kartikayb.github.io/kartikay-portfolio',
     siteName: 'Kartikay Bansal Portfolio',
     images: [
       {
-        url: '/profile.jpg',
+        url: 'https://kartikayb.github.io/kartikay-portfolio/profile.jpg',
         width: 800,
         height: 600,
         alt: 'Kartikay Bansal',
